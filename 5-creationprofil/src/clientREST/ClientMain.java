@@ -52,12 +52,12 @@ public class ClientMain {
 	
 			
 			System.out.println("ok 2");
-			message = "Vous venez de créez votre profil Monsieur " +util.getNom()+ ".";
-			System.out.println(message + util.getNom()
-										+util.getPrenom()
-										+util.getPseudo()
-										+util.getEmail()
-										+util.getPassword());
+			message = "Vous venez de créez votre profil Monsieur " +util.getNom_utilisateur()+ ".";
+			System.out.println(message + util.getNom_utilisateur()
+										+util.getPrenom_utilisateur()
+										+util.getPseudo_utilisateur()
+										+util.getEmail_utilisateur()
+										+util.getPassword_utilisateur());
 			
 	
 	}

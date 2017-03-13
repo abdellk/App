@@ -20,21 +20,39 @@ public class Type_annonce {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id_type;
 		@Column(nullable = false)
-		private String libelle;
-		@OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
+		private String libelle_type;
+		
+		@OneToMany(mappedBy = "type_annonce", cascade = CascadeType.ALL)
 		private List<Annonce> annonces = new ArrayList<>();
+		
+		public void ajoutAnnonce(Annonce annonce){
+			annonces.add(annonce);
+			annonce.setType_annonce(this);;
+		}
 
 		public Type_annonce() {
 			super();
 		}
 
-		public Type_annonce(String libelle) {
+		public Type_annonce(String libelle_type) {
 			super();
-			this.libelle = libelle;
+			this.libelle_type = libelle_type;
 		}
 
 		public int getId_type() {
 			return id_type;
+		}
+
+		public void setId_type(int id_type) {
+			this.id_type = id_type;
+		}
+
+		public String getLibelle_type() {
+			return libelle_type;
+		}
+
+		public void setLibelle_type(String libelle_type) {
+			this.libelle_type = libelle_type;
 		}
 
 		public List<Annonce> getAnnonces() {
@@ -43,18 +61,6 @@ public class Type_annonce {
 
 		public void setAnnonces(List<Annonce> annonces) {
 			this.annonces = annonces;
-		}
-
-		public void setId_type(int id_type) {
-			this.id_type = id_type;
-		}
-
-		public String getLibelle() {
-			return libelle;
-		}
-
-		public void setLibelle(String libelle) {
-			this.libelle = libelle;
 		}
 
 }

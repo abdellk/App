@@ -1,9 +1,5 @@
 package service;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.ws.rs.GET;
@@ -12,12 +8,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
-
-
 import modele.Utilisateur;
 import ressources.FournisseurDePersistance;
 import ressources.MessageDTO;
@@ -25,7 +15,6 @@ import ressources.MessageDTO;
 @Path("serviceauth")
 public class ServiceAuthentification {
 	
-	private final static String QUEUE_NAME = "journal";
 	private String messageJournal;
 	private String nom;
 	//private String role;
@@ -54,13 +43,13 @@ public class ServiceAuthentification {
 		try {
 				em = FournisseurDePersistance.getInstance().fournir();
 				em.getTransaction().begin();
-				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL = ?", Utilisateur.class);
+				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL_UTILISATEUR = ?", Utilisateur.class);
 				requete.setParameter(1, email);
 				Utilisateur utilisateur = (Utilisateur) requete.getSingleResult();
-				nom = utilisateur.getNom();
+				nom = utilisateur.getNom_utilisateur();
 			//	role = utilisateur.getRole().getRole();
-				messageJournal = email +"|" + nom +"|";
-				if(!utilisateur.getPassword().equals(password)) {
+			//	messageJournal = email +"|" + nom +"|";
+				if(!utilisateur.getPassword_utilisateur().equals(password)) {
 					messageJournal += "mauvais password";
 				}
 				else {
@@ -76,22 +65,12 @@ public class ServiceAuthentification {
 		finally {
 			try {
 					em.close();
-					journaliser();
+				//	journaliser();
 			} catch (Exception e) {e.printStackTrace();
 			}			
 		}
 		return statut;
 	}
 	
-	private void journaliser() throws IOException, TimeoutException {
-		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("rabbitmq");
-	    Connection connexion = (Connection) factory.newConnection();
-	    Channel channel = connexion.createChannel();
-	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-	    System.out.println(messageJournal);
-	    channel.basicPublish("", QUEUE_NAME, null, messageJournal.getBytes());
-	    channel.close();
-	    connexion.close();
-	}
+	
 }

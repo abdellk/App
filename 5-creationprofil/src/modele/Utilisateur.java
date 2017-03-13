@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "UTILISATEUR")
@@ -18,35 +21,97 @@ public class Utilisateur {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id_user;
+	private int id_utilisateur;
 	@Column(nullable = false)
-	private String nom;
+	private String nom_utilisateur;
 	@Column(nullable = false)
-	private String prenom;
+	private String prenom_utilisateur;
 	@Column(nullable = false, unique = true)
-	private String pseudo;
+	private String pseudo_utilisateur;
 	@Column(nullable = false, unique = true)
-	private String email;
+	private String email_utilisateur;
 	@Column(nullable = false)
-	private String password;
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private String password_utilisateur;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date creation_date_utilisateur;
+	
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
 	private List<Annonce> annonces = new ArrayList<>();
+	
+	public void ajoutAnnonce(Annonce annonce) {
+		annonces.add(annonce);
+		annonce.setUtilisateur(this);
+	}
 
 	public Utilisateur() {
 		super();
 	}
-	//***************************************** TEST ***********************************************
-	
-	
-	//***************************************** TEST ***********************************************
 
-	public Utilisateur(String nom, String prenom, String pseudo, String email, String password) {
+	public Utilisateur(String nom_utilisateur, String prenom_utilisateur, String pseudo_utilisateur,
+			String email_utilisateur, String password_utilisateur, Date creation_date_utilisateur) {
 		super();
-		this.nom = nom;
-		this.prenom = prenom;
-		this.pseudo = pseudo;
-		this.email = email;
-		this.password = password;
+		this.nom_utilisateur = nom_utilisateur;
+		this.prenom_utilisateur = prenom_utilisateur;
+		this.pseudo_utilisateur = pseudo_utilisateur;
+		this.email_utilisateur = email_utilisateur;
+		this.password_utilisateur = password_utilisateur;
+		this.creation_date_utilisateur = creation_date_utilisateur;
+	}
+
+	public int getId_utilisateur() {
+		return id_utilisateur;
+	}
+
+	public void setId_utilisateur(int id_utilisateur) {
+		this.id_utilisateur = id_utilisateur;
+	}
+
+	public String getNom_utilisateur() {
+		return nom_utilisateur;
+	}
+
+	public void setNom_utilisateur(String nom_utilisateur) {
+		this.nom_utilisateur = nom_utilisateur;
+	}
+
+	public String getPrenom_utilisateur() {
+		return prenom_utilisateur;
+	}
+
+	public void setPrenom_utilisateur(String prenom_utilisateur) {
+		this.prenom_utilisateur = prenom_utilisateur;
+	}
+
+	public String getPseudo_utilisateur() {
+		return pseudo_utilisateur;
+	}
+
+	public void setPseudo_utilisateur(String pseudo_utilisateur) {
+		this.pseudo_utilisateur = pseudo_utilisateur;
+	}
+
+	public String getEmail_utilisateur() {
+		return email_utilisateur;
+	}
+
+	public void setEmail_utilisateur(String email_utilisateur) {
+		this.email_utilisateur = email_utilisateur;
+	}
+
+	public String getPassword_utilisateur() {
+		return password_utilisateur;
+	}
+
+	public void setPassword_utilisateur(String password_utilisateur) {
+		this.password_utilisateur = password_utilisateur;
+	}
+
+	public Date getCreation_date_utilisateur() {
+		return creation_date_utilisateur;
+	}
+
+	public void setCreation_date_utilisateur(Date creation_date_utilisateur) {
+		this.creation_date_utilisateur = creation_date_utilisateur;
 	}
 
 	public List<Annonce> getAnnonces() {
@@ -57,52 +122,5 @@ public class Utilisateur {
 		this.annonces = annonces;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public int getId_user() {
-		return id_user;
-	}
-
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
-	}
-
-	public String getPseudo() {
-		return pseudo;
-	}
-
-	public void setPseudo(String pseudo) {
-		this.pseudo = pseudo;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
 
 }

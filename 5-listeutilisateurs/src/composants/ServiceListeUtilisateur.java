@@ -39,11 +39,11 @@ public class ServiceListeUtilisateur {
 				Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR", Utilisateur.class);
 				List<Utilisateur> users = requete.getResultList();
 				for(Utilisateur iter : users){
-					listeDTO.getListedto().add(new UtilisateurDTO(iter.getNom(), 
-																	iter.getPrenom(), 
-																	iter.getPseudo(), 
-																	iter.getEmail(), 
-																	iter.getPassword()));
+					listeDTO.getListedto().add(new UtilisateurDTO(iter.getNom_utilisateur(), 
+																	iter.getPrenom_utilisateur(), 
+																	iter.getPseudo_utilisateur(), 
+																	iter.getEmail_utilisateur(), 
+																	iter.getPassword_utilisateur()));
 					// faut-il enlever le mdp ? nan ! 
 				}
 				

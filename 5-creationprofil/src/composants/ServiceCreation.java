@@ -1,5 +1,6 @@
 package composants;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -88,15 +89,15 @@ public class ServiceCreation {
 		try {
 			em = FournisseurDePersistance.getInstance().fournir();
 			em.getTransaction().begin();
-			Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL = '" + email  
-																	+ "'" +"AND PSEUDO = '" + pseudo +"'",Utilisateur.class);
+			Query requete = em.createNativeQuery("SELECT * FROM UTILISATEUR WHERE EMAIL_UTILISATEUR = '" + email  
+																	+ "'" +"AND PSEUDO_UTILISATEUR = '" + pseudo +"'",Utilisateur.class);
 			List <Utilisateur> utilisateur = requete.getResultList();
 			
 			if  (utilisateur.size() > 0){	
 				messageJ = "L'email ou/et le pseudo que vous aviez entré(s) existe(nt) déjà. Voici l'erreur : ";
 				
 			} else {
-				Utilisateur util = new Utilisateur(nom, prenom, pseudo, email, password);
+				Utilisateur util = new Utilisateur(nom, prenom, pseudo, email, password, new Date() );
 				em.persist(util);
 				em.getTransaction().commit();
 				statut = true;
