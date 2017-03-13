@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>page Creation Profil</title>
+</head>
+<body>
+
+<h:form>
+
+<h:panelGrid columns="2">
+
+<h:outputLabel value="nom"></h:outputLabel>
+<h:inputText value="#{createur.nom}" ></h:inputText>
+
+<h:outputLabel value="prenom"></h:outputLabel>
+<h:inputText value="#{createur.prenom}" ></h:inputText>
+
+<h:outputLabel value="pseudo"></h:outputLabel>
+<h:inputText value="#{createur.pseudo}" ></h:inputText>
+
+<h:outputLabel value="email"></h:outputLabel>
+<h:inputText value="#{createur.email}" ></h:inputText>
+
+<h:outputLabel value="password"></h:outputLabel>
+<h:inputSecret value="#{createur.password}" ></h:inputSecret>
+
+
+</h:panelGrid>
+
+<h:commandButton action="#{createur.addUtilisateur}" value="Créer son profil">
+
+<f:ajax execute="message" render="sortieajax"></f:ajax>
+</h:commandButton>
+<h:outputText id="sortieajax" value="#{createur.message}"></h:outputText>
+
+</h:form>
+</body>
+</html>

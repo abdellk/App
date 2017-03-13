@@ -34,7 +34,7 @@ public class ServiceCreation {
 		
 		if (creationprofil( nom,  prenom,  pseudo,  email,  password)){
 			
-			message.setMessage("Votre profil a bien été créé Monsieur." );
+			message.setMessage("Votre profil a bien été créé Monsieur " );
 			message.setNomU(nom);
 		}
 		else message.setMessage(messageJ); 

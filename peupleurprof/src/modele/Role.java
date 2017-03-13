@@ -31,8 +31,10 @@ public class Role {
 	private Date derniere_mise_a_jour;
 	@Column(nullable = false)
 	private String modifie_par;
+	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
 	private List<Utilisateur> utilisateurs = new ArrayList<>();
+	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
 	private List<Action> actions = new ArrayList<>();
 

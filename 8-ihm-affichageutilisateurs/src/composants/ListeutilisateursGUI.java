@@ -24,7 +24,7 @@ public class ListeutilisateursGUI {
 	@PostConstruct
 	public void controler() {
 		Client client = ClientBuilder.newClient();											
-		WebTarget cible = client.target(UriBuilder.fromPath("http://tomcatauthentificateur:8080/5-listeutilisateurs/"));
+		WebTarget cible = client.target(UriBuilder.fromPath("http://tomcatservices:8080/4-listeutilisateurs/"));
 		WebTarget ciblefinale = cible.path("listeutil");
 		ListeUtilisateurDTO dtoliste = ciblefinale.request(MediaType.APPLICATION_XML).get(ListeUtilisateurDTO.class);
 		listeUtilisateurs = dtoliste.getListedto();
