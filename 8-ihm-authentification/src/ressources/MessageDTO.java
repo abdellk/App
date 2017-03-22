@@ -6,16 +6,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class MessageDTO {
 
 	private String bienvenue;
-	private String role;
+	private String email;
+	private long idutil;
+	private boolean verif;
 
 	public MessageDTO() {
 		super();
 	}
 
-	public MessageDTO(String bienvenue, String role) {
+	public MessageDTO(String bienvenue, String email, long idutil,boolean verif) {
 		super();
 		this.bienvenue = bienvenue;
-		this.role = role;
+		this.email = email;
+		this.idutil = idutil;
+		this.verif = verif;
 	}
 
 	public String getBienvenue() {
@@ -26,12 +30,28 @@ public class MessageDTO {
 		this.bienvenue = bienvenue;
 	}
 
-	public String getRole() {
-		return role;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
+	public long getIdutil() {
+		return idutil;
+	}
+
+	public void setIdutil(long idutil) {
+		this.idutil = idutil;
+	}
+
+	public boolean isVerif() {
+		return verif;
+	}
+
+	public void setVerif(boolean verif) {
+		this.verif = verif;
+	}	
+	
 }

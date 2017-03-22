@@ -17,8 +17,6 @@ import ressources.FournisseurDePersistance;
 @Path("listeutil")
 public class ServiceListeUtilisateur {
 	
-	//arranger les imports !!! *****************
-	
 	ListeUtilisateurDTO listeDTO; 
 		
 	@GET
@@ -43,8 +41,7 @@ public class ServiceListeUtilisateur {
 																	iter.getPrenom_utilisateur(), 
 																	iter.getPseudo_utilisateur(), 
 																	iter.getEmail_utilisateur(), 
-																	iter.getPassword_utilisateur()));
-					// faut-il enlever le mdp ? nan ! 
+																	iter.getPassword_utilisateur())); 
 				}
 				
 				em.getTransaction().commit();

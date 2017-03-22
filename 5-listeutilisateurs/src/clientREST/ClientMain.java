@@ -19,7 +19,11 @@ public class ClientMain {
 		WebTarget ciblefinale = cible.path("listeutil");
 		ListeUtilisateurDTO dtoliste = ciblefinale.request(MediaType.APPLICATION_XML).get(ListeUtilisateurDTO.class);
 		for(UtilisateurDTO iter: dtoliste.getListedto())
-			System.out.println(iter.getNom()+iter.getPrenom()+" | "+iter.getPseudo()+" | "+iter.getEmail()+" | "+iter.getPassword());
+			System.out.println(iter.getNom()
+								+iter.getPrenom()
+								+" | "+iter.getPseudo()
+								+" | "+iter.getEmail()
+								+" | "+iter.getPassword());
 	}
 
 }

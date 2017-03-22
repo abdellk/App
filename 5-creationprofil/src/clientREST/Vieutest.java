@@ -4,10 +4,15 @@ public class Vieutest {
 	
 	public static void main(String[] args){
 
-	String pw = null;
-	if (pw.equals(null) )System.out.println("rien ne s'affiche") ;
-	else System.out.println("vide");
-
-	;
+		boolean cool = false;
+		
+		if (!cool) {
+			System.out.println("c'est faux");
+		}
+		
+		else {
+			System.out.println("c'est vrai");
+		}
+		
 }
 }
